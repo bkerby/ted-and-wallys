@@ -1,0 +1,30 @@
+<div class="parent">
+  <mat-card>
+    <div class="child" *ngIf="!registerView">
+      <img src="../../../assets/tedAndWallys.png" /><br>
+      <mat-form-field><input autocomplete="off" matInput [(ngModel)]="email" type="email" placeholder="Email">
+      </mat-form-field><br>
+      <mat-form-field><input autocomplete="off" matInput [(ngModel)]="password" type="password" placeholder="Password">
+      </mat-form-field><br>
+      <button (click)="login()" color="primary" mat-raised-button>Login</button>
+      <button (click)="registerToggle()" mat-button>Register</button>
+    </div>
+    <div class="child" *ngIf="registerView">
+      <img src="../../../assets/tedAndWallys.png" /><br>
+      <mat-form-field><input matInput autocomplete="off" [(ngModel)]="firstName" type="text" placeholder="First Name">
+      </mat-form-field><br>
+      <mat-form-field><input matInput autocomplete="off" [(ngModel)]="lastName" type="text" placeholder="Last Name">
+      </mat-form-field><br>
+      <mat-form-field><input matInput autocomplete="off" [(ngModel)]="registerEmail" type="email" placeholder="Email">
+      </mat-form-field><br>
+      <mat-form-field><input matInput autocomplete="off" [(ngModel)]="registerPassword" type="password"
+          placeholder="New Password"></mat-form-field>
+      <br>
+      <mat-form-field><input matInput autocomplete="off" [(ngModel)]="registerCPassword" type="password"
+          placeholder="Confirm Password">
+      </mat-form-field><br>
+      <button (click)="register()" color="primary" mat-raised-button>Sign Up</button>
+      <button (click)="registerToggle()" mat-button>Login</button>
+    </div>
+  </mat-card>
+</div>

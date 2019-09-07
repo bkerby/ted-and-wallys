@@ -1,0 +1,14 @@
+.parent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.child {
+  display: inline-block;
+}
+button {
+    width: 50%;
+}
+mat-form-field {
+    width: 100%;
+}

@@ -1,0 +1,81 @@
+<div>
+    <mat-card>
+        <mat-card-title>
+            Employees
+        </mat-card-title>
+        <mat-divider></mat-divider>
+        <mat-list class="employees">
+            <mat-list-item *ngFor="let employee of mockEmployees" id="{{employee.employeeId}}"
+                (click)="selectEmployee(employee)">
+                {{ employee.fName }}
+                {{ employee.lName }}
+                <span class="spacer"></span>
+                <button mat-icon-button [matMenuTriggerFor]="menu">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="removeEmployee(employee.employeeId)">Remove Employee</button>
+                </mat-menu>
+                <mat-divider></mat-divider>
+            </mat-list-item>
+        </mat-list>
+        <mat-card-actions>
+            <mat-form-field>
+                <input [(ngModel)]="addEmployeeFirstName" matInput type="text" placeholder="First Name" />
+            </mat-form-field>
+            &nbsp;
+            <mat-form-field>
+                <input [(ngModel)]="addEmployeeLastName" matInput type="text" placeholder="Last Name" />
+            </mat-form-field>
+            <button color="primary" mat-raised-button (click)="addEmployee()">
+                <mat-icon>add</mat-icon>Add Employee
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</div>
+<div>
+    <mat-card>
+        <mat-card-title>
+            Milestones
+        </mat-card-title>
+        <mat-card-subtitle *ngIf="selectedEmployee.employeeId === undefined">
+            Select an Employee
+        </mat-card-subtitle>
+        <mat-card-subtitle *ngIf="selectedEmployee.employeeId !== undefined">
+            {{ selectedEmployee.fName }} {{ selectedEmployee.lName }}
+        </mat-card-subtitle>
+        <mat-divider></mat-divider>
+        <span *ngFor="let employee of mockEmployees">
+            <mat-list *ngIf="selectedEmployee.employeeId === employee.employeeId">
+                <mat-list-item *ngFor="let milestone of mockMilestones">
+                    <mat-checkbox (click)="updateMilestones(milestone.milestoneId, employee.milestones)"
+                        labelPosition="before"
+                        [checked]="hasCompletedMilestone(employee.milestones, milestone.milestoneId)" color="primary">
+                        {{ milestone.name }}
+                    </mat-checkbox>
+                    <span class="spacer"></span>
+                    <button mat-icon-button [matMenuTriggerFor]="menu">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item (click)="removeMilestone(milestone.milestoneId)">Remove Milestone</button>
+                    </mat-menu>
+                    <mat-divider></mat-divider>
+                </mat-list-item>
+            </mat-list>
+        </span>
+        <mat-card-actions>
+            <mat-form-field>
+                <input [(ngModel)]="addMilestoneName" matInput type="text" placeholder="Name" />
+            </mat-form-field>
+            &nbsp;
+            <mat-form-field>
+                <textarea [(ngModel)]="addMilestoneDescription" matInput rows="1" type="text"
+                    placeholder="Description"></textarea>
+            </mat-form-field>
+            <button color="primary" mat-raised-button (click)="addMilestone()">
+                <mat-icon>add</mat-icon>Add Milestone
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</div>
